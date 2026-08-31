@@ -1,5 +1,5 @@
-import { AdminSidebar } from '@/components/layout/sidebar';
 import { AdminHeader } from '@/components/layout/header';
+import { AdminSidebar } from '@/components/layout/sidebar';
 
 export default function AdminLayout({
   children,
@@ -14,7 +14,7 @@ export default function AdminLayout({
         <AdminHeader />
 
         <main className='min-h-screen'>
-          <div className='mx-auto w-full max-w-[1600px] p-4 md:p-6 lg:p-8'>
+          <div className='mx-auto w-full max-w-[1600px] p-4 sm:p-5 md:p-6 lg:p-8'>
             {children}
           </div>
         </main>
