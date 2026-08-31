@@ -16,7 +16,6 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ActionButton } from '@/components/action-button';
 
 import { cn } from '@/lib/utils';
 
@@ -31,22 +30,22 @@ interface NavigationItem {
 const navigation: NavigationItem[] = [
   {
     title: 'Dashboard',
-    href: '/client',
+    href: '/clients/dashboard',
     icon: LayoutDashboard,
   },
   {
     title: 'My Applications',
-    href: '/client/applications',
+    href: '/clients/applications',
     icon: FileText,
   },
   {
     title: 'My Loans',
-    href: '/client/loans',
+    href: '/clients/loans',
     icon: WalletCards,
   },
   {
     title: 'Documents',
-    href: '/client/documents',
+    href: '/clients/documents',
     icon: FileCheck2,
   },
 ];
@@ -54,12 +53,12 @@ const navigation: NavigationItem[] = [
 const accountNavigation: NavigationItem[] = [
   {
     title: 'Profile',
-    href: '/client/profile',
+    href: '/clients/profile',
     icon: User,
   },
   {
     title: 'Settings',
-    href: '/client/settings',
+    href: '/clients/settings',
     icon: Settings,
   },
 ];
