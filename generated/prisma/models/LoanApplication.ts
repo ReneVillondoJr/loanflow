@@ -30,6 +30,8 @@ export type LoanApplicationAvgAggregateOutputType = {
   requestedAmount: runtime.Decimal | null
   approvedAmount: runtime.Decimal | null
   termMonths: number | null
+  monthlyExpenses: runtime.Decimal | null
+  existingDebt: runtime.Decimal | null
   creditScore: number | null
 }
 
@@ -37,6 +39,8 @@ export type LoanApplicationSumAggregateOutputType = {
   requestedAmount: runtime.Decimal | null
   approvedAmount: runtime.Decimal | null
   termMonths: number | null
+  monthlyExpenses: runtime.Decimal | null
+  existingDebt: runtime.Decimal | null
   creditScore: number | null
 }
 
@@ -48,9 +52,13 @@ export type LoanApplicationMinAggregateOutputType = {
   requestedAmount: runtime.Decimal | null
   approvedAmount: runtime.Decimal | null
   termMonths: number | null
+  purpose: string | null
+  monthlyExpenses: runtime.Decimal | null
+  existingDebt: runtime.Decimal | null
   status: $Enums.ApplicationStatus | null
   creditScore: number | null
   riskLevel: $Enums.RiskLevel | null
+  submittedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -63,9 +71,13 @@ export type LoanApplicationMaxAggregateOutputType = {
   requestedAmount: runtime.Decimal | null
   approvedAmount: runtime.Decimal | null
   termMonths: number | null
+  purpose: string | null
+  monthlyExpenses: runtime.Decimal | null
+  existingDebt: runtime.Decimal | null
   status: $Enums.ApplicationStatus | null
   creditScore: number | null
   riskLevel: $Enums.RiskLevel | null
+  submittedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -78,9 +90,13 @@ export type LoanApplicationCountAggregateOutputType = {
   requestedAmount: number
   approvedAmount: number
   termMonths: number
+  purpose: number
+  monthlyExpenses: number
+  existingDebt: number
   status: number
   creditScore: number
   riskLevel: number
+  submittedAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -91,6 +107,8 @@ export type LoanApplicationAvgAggregateInputType = {
   requestedAmount?: true
   approvedAmount?: true
   termMonths?: true
+  monthlyExpenses?: true
+  existingDebt?: true
   creditScore?: true
 }
 
@@ -98,6 +116,8 @@ export type LoanApplicationSumAggregateInputType = {
   requestedAmount?: true
   approvedAmount?: true
   termMonths?: true
+  monthlyExpenses?: true
+  existingDebt?: true
   creditScore?: true
 }
 
@@ -109,9 +129,13 @@ export type LoanApplicationMinAggregateInputType = {
   requestedAmount?: true
   approvedAmount?: true
   termMonths?: true
+  purpose?: true
+  monthlyExpenses?: true
+  existingDebt?: true
   status?: true
   creditScore?: true
   riskLevel?: true
+  submittedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -124,9 +148,13 @@ export type LoanApplicationMaxAggregateInputType = {
   requestedAmount?: true
   approvedAmount?: true
   termMonths?: true
+  purpose?: true
+  monthlyExpenses?: true
+  existingDebt?: true
   status?: true
   creditScore?: true
   riskLevel?: true
+  submittedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -139,9 +167,13 @@ export type LoanApplicationCountAggregateInputType = {
   requestedAmount?: true
   approvedAmount?: true
   termMonths?: true
+  purpose?: true
+  monthlyExpenses?: true
+  existingDebt?: true
   status?: true
   creditScore?: true
   riskLevel?: true
+  submittedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -241,9 +273,13 @@ export type LoanApplicationGroupByOutputType = {
   requestedAmount: runtime.Decimal
   approvedAmount: runtime.Decimal | null
   termMonths: number
+  purpose: string | null
+  monthlyExpenses: runtime.Decimal | null
+  existingDebt: runtime.Decimal | null
   status: $Enums.ApplicationStatus
   creditScore: number | null
   riskLevel: $Enums.RiskLevel | null
+  submittedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: LoanApplicationCountAggregateOutputType | null
@@ -279,9 +315,13 @@ export type LoanApplicationWhereInput = {
   requestedAmount?: Prisma.DecimalFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.DecimalNullableFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFilter<"LoanApplication"> | number
+  purpose?: Prisma.StringNullableFilter<"LoanApplication"> | string | null
+  monthlyExpenses?: Prisma.DecimalNullableFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.DecimalNullableFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFilter<"LoanApplication"> | $Enums.ApplicationStatus
   creditScore?: Prisma.IntNullableFilter<"LoanApplication"> | number | null
   riskLevel?: Prisma.EnumRiskLevelNullableFilter<"LoanApplication"> | $Enums.RiskLevel | null
+  submittedAt?: Prisma.DateTimeNullableFilter<"LoanApplication"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"LoanApplication"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LoanApplication"> | Date | string
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
@@ -297,9 +337,13 @@ export type LoanApplicationOrderByWithRelationInput = {
   requestedAmount?: Prisma.SortOrder
   approvedAmount?: Prisma.SortOrderInput | Prisma.SortOrder
   termMonths?: Prisma.SortOrder
+  purpose?: Prisma.SortOrderInput | Prisma.SortOrder
+  monthlyExpenses?: Prisma.SortOrderInput | Prisma.SortOrder
+  existingDebt?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   creditScore?: Prisma.SortOrderInput | Prisma.SortOrder
   riskLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   customer?: Prisma.CustomerOrderByWithRelationInput
@@ -318,9 +362,13 @@ export type LoanApplicationWhereUniqueInput = Prisma.AtLeast<{
   requestedAmount?: Prisma.DecimalFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.DecimalNullableFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFilter<"LoanApplication"> | number
+  purpose?: Prisma.StringNullableFilter<"LoanApplication"> | string | null
+  monthlyExpenses?: Prisma.DecimalNullableFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.DecimalNullableFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFilter<"LoanApplication"> | $Enums.ApplicationStatus
   creditScore?: Prisma.IntNullableFilter<"LoanApplication"> | number | null
   riskLevel?: Prisma.EnumRiskLevelNullableFilter<"LoanApplication"> | $Enums.RiskLevel | null
+  submittedAt?: Prisma.DateTimeNullableFilter<"LoanApplication"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"LoanApplication"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LoanApplication"> | Date | string
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
@@ -336,9 +384,13 @@ export type LoanApplicationOrderByWithAggregationInput = {
   requestedAmount?: Prisma.SortOrder
   approvedAmount?: Prisma.SortOrderInput | Prisma.SortOrder
   termMonths?: Prisma.SortOrder
+  purpose?: Prisma.SortOrderInput | Prisma.SortOrder
+  monthlyExpenses?: Prisma.SortOrderInput | Prisma.SortOrder
+  existingDebt?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   creditScore?: Prisma.SortOrderInput | Prisma.SortOrder
   riskLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.LoanApplicationCountOrderByAggregateInput
@@ -359,9 +411,13 @@ export type LoanApplicationScalarWhereWithAggregatesInput = {
   requestedAmount?: Prisma.DecimalWithAggregatesFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.DecimalNullableWithAggregatesFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntWithAggregatesFilter<"LoanApplication"> | number
+  purpose?: Prisma.StringNullableWithAggregatesFilter<"LoanApplication"> | string | null
+  monthlyExpenses?: Prisma.DecimalNullableWithAggregatesFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.DecimalNullableWithAggregatesFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusWithAggregatesFilter<"LoanApplication"> | $Enums.ApplicationStatus
   creditScore?: Prisma.IntNullableWithAggregatesFilter<"LoanApplication"> | number | null
   riskLevel?: Prisma.EnumRiskLevelNullableWithAggregatesFilter<"LoanApplication"> | $Enums.RiskLevel | null
+  submittedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"LoanApplication"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"LoanApplication"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"LoanApplication"> | Date | string
 }
@@ -372,9 +428,13 @@ export type LoanApplicationCreateInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutApplicationsInput
@@ -390,9 +450,13 @@ export type LoanApplicationUncheckedCreateInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   documents?: Prisma.LoanDocumentUncheckedCreateNestedManyWithoutApplicationInput
@@ -404,9 +468,13 @@ export type LoanApplicationUpdateInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutApplicationsNestedInput
@@ -422,9 +490,13 @@ export type LoanApplicationUncheckedUpdateInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documents?: Prisma.LoanDocumentUncheckedUpdateManyWithoutApplicationNestedInput
@@ -438,9 +510,13 @@ export type LoanApplicationCreateManyInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -451,9 +527,13 @@ export type LoanApplicationUpdateManyMutationInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -466,9 +546,13 @@ export type LoanApplicationUncheckedUpdateManyInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -491,9 +575,13 @@ export type LoanApplicationCountOrderByAggregateInput = {
   requestedAmount?: Prisma.SortOrder
   approvedAmount?: Prisma.SortOrder
   termMonths?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
+  monthlyExpenses?: Prisma.SortOrder
+  existingDebt?: Prisma.SortOrder
   status?: Prisma.SortOrder
   creditScore?: Prisma.SortOrder
   riskLevel?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -502,6 +590,8 @@ export type LoanApplicationAvgOrderByAggregateInput = {
   requestedAmount?: Prisma.SortOrder
   approvedAmount?: Prisma.SortOrder
   termMonths?: Prisma.SortOrder
+  monthlyExpenses?: Prisma.SortOrder
+  existingDebt?: Prisma.SortOrder
   creditScore?: Prisma.SortOrder
 }
 
@@ -513,9 +603,13 @@ export type LoanApplicationMaxOrderByAggregateInput = {
   requestedAmount?: Prisma.SortOrder
   approvedAmount?: Prisma.SortOrder
   termMonths?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
+  monthlyExpenses?: Prisma.SortOrder
+  existingDebt?: Prisma.SortOrder
   status?: Prisma.SortOrder
   creditScore?: Prisma.SortOrder
   riskLevel?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -528,9 +622,13 @@ export type LoanApplicationMinOrderByAggregateInput = {
   requestedAmount?: Prisma.SortOrder
   approvedAmount?: Prisma.SortOrder
   termMonths?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
+  monthlyExpenses?: Prisma.SortOrder
+  existingDebt?: Prisma.SortOrder
   status?: Prisma.SortOrder
   creditScore?: Prisma.SortOrder
   riskLevel?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -539,6 +637,8 @@ export type LoanApplicationSumOrderByAggregateInput = {
   requestedAmount?: Prisma.SortOrder
   approvedAmount?: Prisma.SortOrder
   termMonths?: Prisma.SortOrder
+  monthlyExpenses?: Prisma.SortOrder
+  existingDebt?: Prisma.SortOrder
   creditScore?: Prisma.SortOrder
 }
 
@@ -635,14 +735,6 @@ export type EnumApplicationStatusFieldUpdateOperationsInput = {
   set?: $Enums.ApplicationStatus
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type NullableEnumRiskLevelFieldUpdateOperationsInput = {
   set?: $Enums.RiskLevel | null
 }
@@ -667,9 +759,13 @@ export type LoanApplicationCreateWithoutCustomerInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   loanProduct: Prisma.LoanProductCreateNestedOneWithoutApplicationsInput
@@ -683,9 +779,13 @@ export type LoanApplicationUncheckedCreateWithoutCustomerInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   documents?: Prisma.LoanDocumentUncheckedCreateNestedManyWithoutApplicationInput
@@ -728,9 +828,13 @@ export type LoanApplicationScalarWhereInput = {
   requestedAmount?: Prisma.DecimalFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.DecimalNullableFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFilter<"LoanApplication"> | number
+  purpose?: Prisma.StringNullableFilter<"LoanApplication"> | string | null
+  monthlyExpenses?: Prisma.DecimalNullableFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.DecimalNullableFilter<"LoanApplication"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFilter<"LoanApplication"> | $Enums.ApplicationStatus
   creditScore?: Prisma.IntNullableFilter<"LoanApplication"> | number | null
   riskLevel?: Prisma.EnumRiskLevelNullableFilter<"LoanApplication"> | $Enums.RiskLevel | null
+  submittedAt?: Prisma.DateTimeNullableFilter<"LoanApplication"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"LoanApplication"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LoanApplication"> | Date | string
 }
@@ -741,9 +845,13 @@ export type LoanApplicationCreateWithoutLoanProductInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutApplicationsInput
@@ -757,9 +865,13 @@ export type LoanApplicationUncheckedCreateWithoutLoanProductInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   documents?: Prisma.LoanDocumentUncheckedCreateNestedManyWithoutApplicationInput
@@ -797,9 +909,13 @@ export type LoanApplicationCreateWithoutDocumentsInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutApplicationsInput
@@ -814,9 +930,13 @@ export type LoanApplicationUncheckedCreateWithoutDocumentsInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -843,9 +963,13 @@ export type LoanApplicationUpdateWithoutDocumentsInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutApplicationsNestedInput
@@ -860,9 +984,13 @@ export type LoanApplicationUncheckedUpdateWithoutDocumentsInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -874,9 +1002,13 @@ export type LoanApplicationCreateManyCustomerInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -887,9 +1019,13 @@ export type LoanApplicationUpdateWithoutCustomerInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   loanProduct?: Prisma.LoanProductUpdateOneRequiredWithoutApplicationsNestedInput
@@ -903,9 +1039,13 @@ export type LoanApplicationUncheckedUpdateWithoutCustomerInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documents?: Prisma.LoanDocumentUncheckedUpdateManyWithoutApplicationNestedInput
@@ -918,9 +1058,13 @@ export type LoanApplicationUncheckedUpdateManyWithoutCustomerInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -932,9 +1076,13 @@ export type LoanApplicationCreateManyLoanProductInput = {
   requestedAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths: number
+  purpose?: string | null
+  monthlyExpenses?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ApplicationStatus
   creditScore?: number | null
   riskLevel?: $Enums.RiskLevel | null
+  submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -945,9 +1093,13 @@ export type LoanApplicationUpdateWithoutLoanProductInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutApplicationsNestedInput
@@ -961,9 +1113,13 @@ export type LoanApplicationUncheckedUpdateWithoutLoanProductInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documents?: Prisma.LoanDocumentUncheckedUpdateManyWithoutApplicationNestedInput
@@ -976,9 +1132,13 @@ export type LoanApplicationUncheckedUpdateManyWithoutLoanProductInput = {
   requestedAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approvedAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   termMonths?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monthlyExpenses?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  existingDebt?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   creditScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   riskLevel?: Prisma.NullableEnumRiskLevelFieldUpdateOperationsInput | $Enums.RiskLevel | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1022,9 +1182,13 @@ export type LoanApplicationSelect<ExtArgs extends runtime.Types.Extensions.Inter
   requestedAmount?: boolean
   approvedAmount?: boolean
   termMonths?: boolean
+  purpose?: boolean
+  monthlyExpenses?: boolean
+  existingDebt?: boolean
   status?: boolean
   creditScore?: boolean
   riskLevel?: boolean
+  submittedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
@@ -1041,9 +1205,13 @@ export type LoanApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   requestedAmount?: boolean
   approvedAmount?: boolean
   termMonths?: boolean
+  purpose?: boolean
+  monthlyExpenses?: boolean
+  existingDebt?: boolean
   status?: boolean
   creditScore?: boolean
   riskLevel?: boolean
+  submittedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
@@ -1058,9 +1226,13 @@ export type LoanApplicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   requestedAmount?: boolean
   approvedAmount?: boolean
   termMonths?: boolean
+  purpose?: boolean
+  monthlyExpenses?: boolean
+  existingDebt?: boolean
   status?: boolean
   creditScore?: boolean
   riskLevel?: boolean
+  submittedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
@@ -1075,14 +1247,18 @@ export type LoanApplicationSelectScalar = {
   requestedAmount?: boolean
   approvedAmount?: boolean
   termMonths?: boolean
+  purpose?: boolean
+  monthlyExpenses?: boolean
+  existingDebt?: boolean
   status?: boolean
   creditScore?: boolean
   riskLevel?: boolean
+  submittedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type LoanApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "applicationNumber" | "customerId" | "loanProductId" | "requestedAmount" | "approvedAmount" | "termMonths" | "status" | "creditScore" | "riskLevel" | "createdAt" | "updatedAt", ExtArgs["result"]["loanApplication"]>
+export type LoanApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "applicationNumber" | "customerId" | "loanProductId" | "requestedAmount" | "approvedAmount" | "termMonths" | "purpose" | "monthlyExpenses" | "existingDebt" | "status" | "creditScore" | "riskLevel" | "submittedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["loanApplication"]>
 export type LoanApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   loanProduct?: boolean | Prisma.LoanProductDefaultArgs<ExtArgs>
@@ -1113,9 +1289,13 @@ export type $LoanApplicationPayload<ExtArgs extends runtime.Types.Extensions.Int
     requestedAmount: runtime.Decimal
     approvedAmount: runtime.Decimal | null
     termMonths: number
+    purpose: string | null
+    monthlyExpenses: runtime.Decimal | null
+    existingDebt: runtime.Decimal | null
     status: $Enums.ApplicationStatus
     creditScore: number | null
     riskLevel: $Enums.RiskLevel | null
+    submittedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["loanApplication"]>
@@ -1551,9 +1731,13 @@ export interface LoanApplicationFieldRefs {
   readonly requestedAmount: Prisma.FieldRef<"LoanApplication", 'Decimal'>
   readonly approvedAmount: Prisma.FieldRef<"LoanApplication", 'Decimal'>
   readonly termMonths: Prisma.FieldRef<"LoanApplication", 'Int'>
+  readonly purpose: Prisma.FieldRef<"LoanApplication", 'String'>
+  readonly monthlyExpenses: Prisma.FieldRef<"LoanApplication", 'Decimal'>
+  readonly existingDebt: Prisma.FieldRef<"LoanApplication", 'Decimal'>
   readonly status: Prisma.FieldRef<"LoanApplication", 'ApplicationStatus'>
   readonly creditScore: Prisma.FieldRef<"LoanApplication", 'Int'>
   readonly riskLevel: Prisma.FieldRef<"LoanApplication", 'RiskLevel'>
+  readonly submittedAt: Prisma.FieldRef<"LoanApplication", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"LoanApplication", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"LoanApplication", 'DateTime'>
 }

@@ -1,11 +1,8 @@
 import type { ReactNode } from 'react';
-
 import { CustomerLayout } from '@/components/layout/clients/customer-layout';
-
-interface ClientsLayoutProps {
+interface ClientLayoutProps {
   children: ReactNode;
 }
-
-export default function ClientsLayout({ children }: ClientsLayoutProps) {
+export default function ClientLayout({ children }: ClientLayoutProps) {
   return <CustomerLayout>{children}</CustomerLayout>;
 }
