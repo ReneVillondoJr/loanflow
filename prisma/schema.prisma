@@ -1,0 +1,158 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  LOAN_OFFICER
+  UNDERWRITER
+  CUSTOMER
+}
+
+enum ApplicationStatus {
+  DRAFT
+  SUBMITTED
+  PROCESSING
+  UNDER_REVIEW
+  APPROVED
+  DECLINED
+  CANCELLED
+}
+
+enum DecisionStatus {
+  PENDING
+  APPROVED
+  DECLINED
+  REFERRED
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum DocumentStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum LoanType {
+  PERSONAL
+  BUSINESS
+  AUTO
+  HOME
+}
+
+model User {
+  id       String   @id @default(cuid())
+  name     String?
+  email    String   @unique
+  password String?
+  role     UserRole @default(CUSTOMER)
+
+  customer Customer?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  id String @id @default(cuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  firstName String
+  lastName  String
+  phone     String?
+  address   String?
+
+  employmentStatus String?
+  monthlyIncome    Decimal? @db.Decimal(12, 2)
+
+  applications LoanApplication[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model LoanProduct {
+  id String @id @default(cuid())
+
+  name        String
+  description String?
+
+  type LoanType
+
+  minAmount Decimal @db.Decimal(12, 2)
+  maxAmount Decimal @db.Decimal(12, 2)
+
+  minTerm Int
+  maxTerm Int
+
+  interestRate Decimal @db.Decimal(5, 2)
+
+  isActive Boolean @default(true)
+
+  applications LoanApplication[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model LoanApplication {
+  id String @id @default(cuid())
+
+  applicationNumber String @unique
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  loanProductId String
+  loanProduct   LoanProduct @relation(fields: [loanProductId], references: [id])
+
+  requestedAmount Decimal  @db.Decimal(12, 2)
+  approvedAmount  Decimal? @db.Decimal(12, 2)
+
+  termMonths Int
+
+  status ApplicationStatus @default(DRAFT)
+
+  creditScore Int?
+  riskLevel   RiskLevel?
+
+  documents LoanDocument[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([customerId])
+  @@index([loanProductId])
+  @@index([status])
+}
+
+model LoanDocument {
+  id String @id @default(cuid())
+
+  applicationId String
+  application   LoanApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  name String
+  type String
+  url  String
+
+  status DocumentStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([applicationId])
+}
