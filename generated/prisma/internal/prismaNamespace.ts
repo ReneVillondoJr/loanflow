@@ -847,11 +847,23 @@ export const CustomerScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   firstName: 'firstName',
+  middleName: 'middleName',
   lastName: 'lastName',
+  dateOfBirth: 'dateOfBirth',
+  civilStatus: 'civilStatus',
+  nationality: 'nationality',
   phone: 'phone',
+  alternatePhone: 'alternatePhone',
   address: 'address',
+  city: 'city',
+  state: 'state',
+  postalCode: 'postalCode',
+  country: 'country',
   employmentStatus: 'employmentStatus',
+  employerName: 'employerName',
+  jobTitle: 'jobTitle',
   monthlyIncome: 'monthlyIncome',
+  employmentYears: 'employmentYears',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -885,9 +897,13 @@ export const LoanApplicationScalarFieldEnum = {
   requestedAmount: 'requestedAmount',
   approvedAmount: 'approvedAmount',
   termMonths: 'termMonths',
+  purpose: 'purpose',
+  monthlyExpenses: 'monthlyExpenses',
+  existingDebt: 'existingDebt',
   status: 'status',
   creditScore: 'creditScore',
   riskLevel: 'riskLevel',
+  submittedAt: 'submittedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -996,20 +1012,6 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
 
 
 /**
- * Reference to a field of type 'LoanType'
- */
-export type EnumLoanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanType'>
-    
-
-
-/**
- * Reference to a field of type 'LoanType[]'
- */
-export type ListEnumLoanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanType[]'>
-    
-
-
-/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1020,6 +1022,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanType'
+ */
+export type EnumLoanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanType'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanType[]'
+ */
+export type ListEnumLoanTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanType[]'>
     
 
 

@@ -28,21 +28,35 @@ export type AggregateCustomer = {
 
 export type CustomerAvgAggregateOutputType = {
   monthlyIncome: runtime.Decimal | null
+  employmentYears: number | null
 }
 
 export type CustomerSumAggregateOutputType = {
   monthlyIncome: runtime.Decimal | null
+  employmentYears: number | null
 }
 
 export type CustomerMinAggregateOutputType = {
   id: string | null
   userId: string | null
   firstName: string | null
+  middleName: string | null
   lastName: string | null
+  dateOfBirth: Date | null
+  civilStatus: string | null
+  nationality: string | null
   phone: string | null
+  alternatePhone: string | null
   address: string | null
+  city: string | null
+  state: string | null
+  postalCode: string | null
+  country: string | null
   employmentStatus: string | null
+  employerName: string | null
+  jobTitle: string | null
   monthlyIncome: runtime.Decimal | null
+  employmentYears: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -51,11 +65,23 @@ export type CustomerMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   firstName: string | null
+  middleName: string | null
   lastName: string | null
+  dateOfBirth: Date | null
+  civilStatus: string | null
+  nationality: string | null
   phone: string | null
+  alternatePhone: string | null
   address: string | null
+  city: string | null
+  state: string | null
+  postalCode: string | null
+  country: string | null
   employmentStatus: string | null
+  employerName: string | null
+  jobTitle: string | null
   monthlyIncome: runtime.Decimal | null
+  employmentYears: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -64,11 +90,23 @@ export type CustomerCountAggregateOutputType = {
   id: number
   userId: number
   firstName: number
+  middleName: number
   lastName: number
+  dateOfBirth: number
+  civilStatus: number
+  nationality: number
   phone: number
+  alternatePhone: number
   address: number
+  city: number
+  state: number
+  postalCode: number
+  country: number
   employmentStatus: number
+  employerName: number
+  jobTitle: number
   monthlyIncome: number
+  employmentYears: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -77,21 +115,35 @@ export type CustomerCountAggregateOutputType = {
 
 export type CustomerAvgAggregateInputType = {
   monthlyIncome?: true
+  employmentYears?: true
 }
 
 export type CustomerSumAggregateInputType = {
   monthlyIncome?: true
+  employmentYears?: true
 }
 
 export type CustomerMinAggregateInputType = {
   id?: true
   userId?: true
   firstName?: true
+  middleName?: true
   lastName?: true
+  dateOfBirth?: true
+  civilStatus?: true
+  nationality?: true
   phone?: true
+  alternatePhone?: true
   address?: true
+  city?: true
+  state?: true
+  postalCode?: true
+  country?: true
   employmentStatus?: true
+  employerName?: true
+  jobTitle?: true
   monthlyIncome?: true
+  employmentYears?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -100,11 +152,23 @@ export type CustomerMaxAggregateInputType = {
   id?: true
   userId?: true
   firstName?: true
+  middleName?: true
   lastName?: true
+  dateOfBirth?: true
+  civilStatus?: true
+  nationality?: true
   phone?: true
+  alternatePhone?: true
   address?: true
+  city?: true
+  state?: true
+  postalCode?: true
+  country?: true
   employmentStatus?: true
+  employerName?: true
+  jobTitle?: true
   monthlyIncome?: true
+  employmentYears?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -113,11 +177,23 @@ export type CustomerCountAggregateInputType = {
   id?: true
   userId?: true
   firstName?: true
+  middleName?: true
   lastName?: true
+  dateOfBirth?: true
+  civilStatus?: true
+  nationality?: true
   phone?: true
+  alternatePhone?: true
   address?: true
+  city?: true
+  state?: true
+  postalCode?: true
+  country?: true
   employmentStatus?: true
+  employerName?: true
+  jobTitle?: true
   monthlyIncome?: true
+  employmentYears?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -213,11 +289,23 @@ export type CustomerGroupByOutputType = {
   id: string
   userId: string
   firstName: string
+  middleName: string | null
   lastName: string
+  dateOfBirth: Date | null
+  civilStatus: string | null
+  nationality: string | null
   phone: string | null
+  alternatePhone: string | null
   address: string | null
+  city: string | null
+  state: string | null
+  postalCode: string | null
+  country: string | null
   employmentStatus: string | null
+  employerName: string | null
+  jobTitle: string | null
   monthlyIncome: runtime.Decimal | null
+  employmentYears: number | null
   createdAt: Date
   updatedAt: Date
   _count: CustomerCountAggregateOutputType | null
@@ -249,11 +337,23 @@ export type CustomerWhereInput = {
   id?: Prisma.StringFilter<"Customer"> | string
   userId?: Prisma.StringFilter<"Customer"> | string
   firstName?: Prisma.StringFilter<"Customer"> | string
+  middleName?: Prisma.StringNullableFilter<"Customer"> | string | null
   lastName?: Prisma.StringFilter<"Customer"> | string
+  dateOfBirth?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
+  civilStatus?: Prisma.StringNullableFilter<"Customer"> | string | null
+  nationality?: Prisma.StringNullableFilter<"Customer"> | string | null
   phone?: Prisma.StringNullableFilter<"Customer"> | string | null
+  alternatePhone?: Prisma.StringNullableFilter<"Customer"> | string | null
   address?: Prisma.StringNullableFilter<"Customer"> | string | null
+  city?: Prisma.StringNullableFilter<"Customer"> | string | null
+  state?: Prisma.StringNullableFilter<"Customer"> | string | null
+  postalCode?: Prisma.StringNullableFilter<"Customer"> | string | null
+  country?: Prisma.StringNullableFilter<"Customer"> | string | null
   employmentStatus?: Prisma.StringNullableFilter<"Customer"> | string | null
+  employerName?: Prisma.StringNullableFilter<"Customer"> | string | null
+  jobTitle?: Prisma.StringNullableFilter<"Customer"> | string | null
   monthlyIncome?: Prisma.DecimalNullableFilter<"Customer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.IntNullableFilter<"Customer"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -264,11 +364,23 @@ export type CustomerOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
+  middleName?: Prisma.SortOrderInput | Prisma.SortOrder
   lastName?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrderInput | Prisma.SortOrder
+  civilStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationality?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  alternatePhone?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  state?: Prisma.SortOrderInput | Prisma.SortOrder
+  postalCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  country?: Prisma.SortOrderInput | Prisma.SortOrder
   employmentStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  employerName?: Prisma.SortOrderInput | Prisma.SortOrder
+  jobTitle?: Prisma.SortOrderInput | Prisma.SortOrder
   monthlyIncome?: Prisma.SortOrderInput | Prisma.SortOrder
+  employmentYears?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -282,11 +394,23 @@ export type CustomerWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CustomerWhereInput[]
   NOT?: Prisma.CustomerWhereInput | Prisma.CustomerWhereInput[]
   firstName?: Prisma.StringFilter<"Customer"> | string
+  middleName?: Prisma.StringNullableFilter<"Customer"> | string | null
   lastName?: Prisma.StringFilter<"Customer"> | string
+  dateOfBirth?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
+  civilStatus?: Prisma.StringNullableFilter<"Customer"> | string | null
+  nationality?: Prisma.StringNullableFilter<"Customer"> | string | null
   phone?: Prisma.StringNullableFilter<"Customer"> | string | null
+  alternatePhone?: Prisma.StringNullableFilter<"Customer"> | string | null
   address?: Prisma.StringNullableFilter<"Customer"> | string | null
+  city?: Prisma.StringNullableFilter<"Customer"> | string | null
+  state?: Prisma.StringNullableFilter<"Customer"> | string | null
+  postalCode?: Prisma.StringNullableFilter<"Customer"> | string | null
+  country?: Prisma.StringNullableFilter<"Customer"> | string | null
   employmentStatus?: Prisma.StringNullableFilter<"Customer"> | string | null
+  employerName?: Prisma.StringNullableFilter<"Customer"> | string | null
+  jobTitle?: Prisma.StringNullableFilter<"Customer"> | string | null
   monthlyIncome?: Prisma.DecimalNullableFilter<"Customer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.IntNullableFilter<"Customer"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -297,11 +421,23 @@ export type CustomerOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
+  middleName?: Prisma.SortOrderInput | Prisma.SortOrder
   lastName?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrderInput | Prisma.SortOrder
+  civilStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationality?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  alternatePhone?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  state?: Prisma.SortOrderInput | Prisma.SortOrder
+  postalCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  country?: Prisma.SortOrderInput | Prisma.SortOrder
   employmentStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  employerName?: Prisma.SortOrderInput | Prisma.SortOrder
+  jobTitle?: Prisma.SortOrderInput | Prisma.SortOrder
   monthlyIncome?: Prisma.SortOrderInput | Prisma.SortOrder
+  employmentYears?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CustomerCountOrderByAggregateInput
@@ -318,11 +454,23 @@ export type CustomerScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Customer"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Customer"> | string
   firstName?: Prisma.StringWithAggregatesFilter<"Customer"> | string
+  middleName?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   lastName?: Prisma.StringWithAggregatesFilter<"Customer"> | string
+  dateOfBirth?: Prisma.DateTimeNullableWithAggregatesFilter<"Customer"> | Date | string | null
+  civilStatus?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
+  nationality?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
+  alternatePhone?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
+  city?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
+  state?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
+  postalCode?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
+  country?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   employmentStatus?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
+  employerName?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
+  jobTitle?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   monthlyIncome?: Prisma.DecimalNullableWithAggregatesFilter<"Customer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.IntNullableWithAggregatesFilter<"Customer"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Customer"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Customer"> | Date | string
 }
@@ -330,11 +478,23 @@ export type CustomerScalarWhereWithAggregatesInput = {
 export type CustomerCreateInput = {
   id?: string
   firstName: string
+  middleName?: string | null
   lastName: string
+  dateOfBirth?: Date | string | null
+  civilStatus?: string | null
+  nationality?: string | null
   phone?: string | null
+  alternatePhone?: string | null
   address?: string | null
+  city?: string | null
+  state?: string | null
+  postalCode?: string | null
+  country?: string | null
   employmentStatus?: string | null
+  employerName?: string | null
+  jobTitle?: string | null
   monthlyIncome?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCustomerInput
@@ -345,11 +505,23 @@ export type CustomerUncheckedCreateInput = {
   id?: string
   userId: string
   firstName: string
+  middleName?: string | null
   lastName: string
+  dateOfBirth?: Date | string | null
+  civilStatus?: string | null
+  nationality?: string | null
   phone?: string | null
+  alternatePhone?: string | null
   address?: string | null
+  city?: string | null
+  state?: string | null
+  postalCode?: string | null
+  country?: string | null
   employmentStatus?: string | null
+  employerName?: string | null
+  jobTitle?: string | null
   monthlyIncome?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   applications?: Prisma.LoanApplicationUncheckedCreateNestedManyWithoutCustomerInput
@@ -358,11 +530,23 @@ export type CustomerUncheckedCreateInput = {
 export type CustomerUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  civilStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employerName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   monthlyIncome?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCustomerNestedInput
@@ -373,11 +557,23 @@ export type CustomerUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  civilStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employerName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   monthlyIncome?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.LoanApplicationUncheckedUpdateManyWithoutCustomerNestedInput
@@ -387,11 +583,23 @@ export type CustomerCreateManyInput = {
   id?: string
   userId: string
   firstName: string
+  middleName?: string | null
   lastName: string
+  dateOfBirth?: Date | string | null
+  civilStatus?: string | null
+  nationality?: string | null
   phone?: string | null
+  alternatePhone?: string | null
   address?: string | null
+  city?: string | null
+  state?: string | null
+  postalCode?: string | null
+  country?: string | null
   employmentStatus?: string | null
+  employerName?: string | null
+  jobTitle?: string | null
   monthlyIncome?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -399,11 +607,23 @@ export type CustomerCreateManyInput = {
 export type CustomerUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  civilStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employerName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   monthlyIncome?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -412,11 +632,23 @@ export type CustomerUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  civilStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employerName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   monthlyIncome?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -430,28 +662,53 @@ export type CustomerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
+  middleName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
+  civilStatus?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  alternatePhone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  state?: Prisma.SortOrder
+  postalCode?: Prisma.SortOrder
+  country?: Prisma.SortOrder
   employmentStatus?: Prisma.SortOrder
+  employerName?: Prisma.SortOrder
+  jobTitle?: Prisma.SortOrder
   monthlyIncome?: Prisma.SortOrder
+  employmentYears?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type CustomerAvgOrderByAggregateInput = {
   monthlyIncome?: Prisma.SortOrder
+  employmentYears?: Prisma.SortOrder
 }
 
 export type CustomerMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
+  middleName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
+  civilStatus?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  alternatePhone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  state?: Prisma.SortOrder
+  postalCode?: Prisma.SortOrder
+  country?: Prisma.SortOrder
   employmentStatus?: Prisma.SortOrder
+  employerName?: Prisma.SortOrder
+  jobTitle?: Prisma.SortOrder
   monthlyIncome?: Prisma.SortOrder
+  employmentYears?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -460,17 +717,30 @@ export type CustomerMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
+  middleName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
+  civilStatus?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  alternatePhone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  state?: Prisma.SortOrder
+  postalCode?: Prisma.SortOrder
+  country?: Prisma.SortOrder
   employmentStatus?: Prisma.SortOrder
+  employerName?: Prisma.SortOrder
+  jobTitle?: Prisma.SortOrder
   monthlyIncome?: Prisma.SortOrder
+  employmentYears?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type CustomerSumOrderByAggregateInput = {
   monthlyIncome?: Prisma.SortOrder
+  employmentYears?: Prisma.SortOrder
 }
 
 export type CustomerScalarRelationFilter = {
@@ -510,12 +780,24 @@ export type CustomerUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerUpdateToOneWithWhereWithoutUserInput, Prisma.CustomerUpdateWithoutUserInput>, Prisma.CustomerUncheckedUpdateWithoutUserInput>
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type NullableDecimalFieldUpdateOperationsInput = {
   set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type CustomerCreateNestedOneWithoutApplicationsInput = {
@@ -535,11 +817,23 @@ export type CustomerUpdateOneRequiredWithoutApplicationsNestedInput = {
 export type CustomerCreateWithoutUserInput = {
   id?: string
   firstName: string
+  middleName?: string | null
   lastName: string
+  dateOfBirth?: Date | string | null
+  civilStatus?: string | null
+  nationality?: string | null
   phone?: string | null
+  alternatePhone?: string | null
   address?: string | null
+  city?: string | null
+  state?: string | null
+  postalCode?: string | null
+  country?: string | null
   employmentStatus?: string | null
+  employerName?: string | null
+  jobTitle?: string | null
   monthlyIncome?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   applications?: Prisma.LoanApplicationCreateNestedManyWithoutCustomerInput
@@ -548,11 +842,23 @@ export type CustomerCreateWithoutUserInput = {
 export type CustomerUncheckedCreateWithoutUserInput = {
   id?: string
   firstName: string
+  middleName?: string | null
   lastName: string
+  dateOfBirth?: Date | string | null
+  civilStatus?: string | null
+  nationality?: string | null
   phone?: string | null
+  alternatePhone?: string | null
   address?: string | null
+  city?: string | null
+  state?: string | null
+  postalCode?: string | null
+  country?: string | null
   employmentStatus?: string | null
+  employerName?: string | null
+  jobTitle?: string | null
   monthlyIncome?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   applications?: Prisma.LoanApplicationUncheckedCreateNestedManyWithoutCustomerInput
@@ -577,11 +883,23 @@ export type CustomerUpdateToOneWithWhereWithoutUserInput = {
 export type CustomerUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  civilStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employerName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   monthlyIncome?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.LoanApplicationUpdateManyWithoutCustomerNestedInput
@@ -590,11 +908,23 @@ export type CustomerUpdateWithoutUserInput = {
 export type CustomerUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  civilStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employerName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   monthlyIncome?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.LoanApplicationUncheckedUpdateManyWithoutCustomerNestedInput
@@ -603,11 +933,23 @@ export type CustomerUncheckedUpdateWithoutUserInput = {
 export type CustomerCreateWithoutApplicationsInput = {
   id?: string
   firstName: string
+  middleName?: string | null
   lastName: string
+  dateOfBirth?: Date | string | null
+  civilStatus?: string | null
+  nationality?: string | null
   phone?: string | null
+  alternatePhone?: string | null
   address?: string | null
+  city?: string | null
+  state?: string | null
+  postalCode?: string | null
+  country?: string | null
   employmentStatus?: string | null
+  employerName?: string | null
+  jobTitle?: string | null
   monthlyIncome?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCustomerInput
@@ -617,11 +959,23 @@ export type CustomerUncheckedCreateWithoutApplicationsInput = {
   id?: string
   userId: string
   firstName: string
+  middleName?: string | null
   lastName: string
+  dateOfBirth?: Date | string | null
+  civilStatus?: string | null
+  nationality?: string | null
   phone?: string | null
+  alternatePhone?: string | null
   address?: string | null
+  city?: string | null
+  state?: string | null
+  postalCode?: string | null
+  country?: string | null
   employmentStatus?: string | null
+  employerName?: string | null
+  jobTitle?: string | null
   monthlyIncome?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -645,11 +999,23 @@ export type CustomerUpdateToOneWithWhereWithoutApplicationsInput = {
 export type CustomerUpdateWithoutApplicationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  civilStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employerName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   monthlyIncome?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCustomerNestedInput
@@ -659,11 +1025,23 @@ export type CustomerUncheckedUpdateWithoutApplicationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  middleName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  civilStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alternatePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employmentStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employerName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   monthlyIncome?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  employmentYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -703,11 +1081,23 @@ export type CustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   userId?: boolean
   firstName?: boolean
+  middleName?: boolean
   lastName?: boolean
+  dateOfBirth?: boolean
+  civilStatus?: boolean
+  nationality?: boolean
   phone?: boolean
+  alternatePhone?: boolean
   address?: boolean
+  city?: boolean
+  state?: boolean
+  postalCode?: boolean
+  country?: boolean
   employmentStatus?: boolean
+  employerName?: boolean
+  jobTitle?: boolean
   monthlyIncome?: boolean
+  employmentYears?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -719,11 +1109,23 @@ export type CustomerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   userId?: boolean
   firstName?: boolean
+  middleName?: boolean
   lastName?: boolean
+  dateOfBirth?: boolean
+  civilStatus?: boolean
+  nationality?: boolean
   phone?: boolean
+  alternatePhone?: boolean
   address?: boolean
+  city?: boolean
+  state?: boolean
+  postalCode?: boolean
+  country?: boolean
   employmentStatus?: boolean
+  employerName?: boolean
+  jobTitle?: boolean
   monthlyIncome?: boolean
+  employmentYears?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -733,11 +1135,23 @@ export type CustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   userId?: boolean
   firstName?: boolean
+  middleName?: boolean
   lastName?: boolean
+  dateOfBirth?: boolean
+  civilStatus?: boolean
+  nationality?: boolean
   phone?: boolean
+  alternatePhone?: boolean
   address?: boolean
+  city?: boolean
+  state?: boolean
+  postalCode?: boolean
+  country?: boolean
   employmentStatus?: boolean
+  employerName?: boolean
+  jobTitle?: boolean
   monthlyIncome?: boolean
+  employmentYears?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -747,16 +1161,28 @@ export type CustomerSelectScalar = {
   id?: boolean
   userId?: boolean
   firstName?: boolean
+  middleName?: boolean
   lastName?: boolean
+  dateOfBirth?: boolean
+  civilStatus?: boolean
+  nationality?: boolean
   phone?: boolean
+  alternatePhone?: boolean
   address?: boolean
+  city?: boolean
+  state?: boolean
+  postalCode?: boolean
+  country?: boolean
   employmentStatus?: boolean
+  employerName?: boolean
+  jobTitle?: boolean
   monthlyIncome?: boolean
+  employmentYears?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "firstName" | "lastName" | "phone" | "address" | "employmentStatus" | "monthlyIncome" | "createdAt" | "updatedAt", ExtArgs["result"]["customer"]>
+export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "firstName" | "middleName" | "lastName" | "dateOfBirth" | "civilStatus" | "nationality" | "phone" | "alternatePhone" | "address" | "city" | "state" | "postalCode" | "country" | "employmentStatus" | "employerName" | "jobTitle" | "monthlyIncome" | "employmentYears" | "createdAt" | "updatedAt", ExtArgs["result"]["customer"]>
 export type CustomerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   applications?: boolean | Prisma.Customer$applicationsArgs<ExtArgs>
@@ -779,11 +1205,23 @@ export type $CustomerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: string
     userId: string
     firstName: string
+    middleName: string | null
     lastName: string
+    dateOfBirth: Date | null
+    civilStatus: string | null
+    nationality: string | null
     phone: string | null
+    alternatePhone: string | null
     address: string | null
+    city: string | null
+    state: string | null
+    postalCode: string | null
+    country: string | null
     employmentStatus: string | null
+    employerName: string | null
+    jobTitle: string | null
     monthlyIncome: runtime.Decimal | null
+    employmentYears: number | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["customer"]>
@@ -1214,11 +1652,23 @@ export interface CustomerFieldRefs {
   readonly id: Prisma.FieldRef<"Customer", 'String'>
   readonly userId: Prisma.FieldRef<"Customer", 'String'>
   readonly firstName: Prisma.FieldRef<"Customer", 'String'>
+  readonly middleName: Prisma.FieldRef<"Customer", 'String'>
   readonly lastName: Prisma.FieldRef<"Customer", 'String'>
+  readonly dateOfBirth: Prisma.FieldRef<"Customer", 'DateTime'>
+  readonly civilStatus: Prisma.FieldRef<"Customer", 'String'>
+  readonly nationality: Prisma.FieldRef<"Customer", 'String'>
   readonly phone: Prisma.FieldRef<"Customer", 'String'>
+  readonly alternatePhone: Prisma.FieldRef<"Customer", 'String'>
   readonly address: Prisma.FieldRef<"Customer", 'String'>
+  readonly city: Prisma.FieldRef<"Customer", 'String'>
+  readonly state: Prisma.FieldRef<"Customer", 'String'>
+  readonly postalCode: Prisma.FieldRef<"Customer", 'String'>
+  readonly country: Prisma.FieldRef<"Customer", 'String'>
   readonly employmentStatus: Prisma.FieldRef<"Customer", 'String'>
+  readonly employerName: Prisma.FieldRef<"Customer", 'String'>
+  readonly jobTitle: Prisma.FieldRef<"Customer", 'String'>
   readonly monthlyIncome: Prisma.FieldRef<"Customer", 'Decimal'>
+  readonly employmentYears: Prisma.FieldRef<"Customer", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Customer", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Customer", 'DateTime'>
 }
