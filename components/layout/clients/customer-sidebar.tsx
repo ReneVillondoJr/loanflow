@@ -40,7 +40,7 @@ const navigation: NavigationItem[] = [
   },
   {
     title: 'My Loans',
-    href: '/clients/loans',
+    href: '/clients/myloans',
     icon: WalletCards,
   },
   {
