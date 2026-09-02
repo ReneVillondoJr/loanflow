@@ -1,8 +1,9 @@
 'use client';
 
-import { Plus, Upload } from 'lucide-react';
+import { Upload } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import { PageHeader } from '@/components/page-header';
 
 interface DocumentHeaderProps {
   onUpload: () => void;
@@ -10,19 +11,19 @@ interface DocumentHeaderProps {
 
 export function DocumentHeader({ onUpload }: DocumentHeaderProps) {
   return (
-    <section className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
-      <div className='min-w-0'>
-        <h1 className='text-2xl font-semibold tracking-tight'>My Documents</h1>
-
-        <p className='mt-1 text-sm text-muted-foreground'>
-          Upload and manage documents required for your loan applications.
-        </p>
-      </div>
-
-      <Button type='button' onClick={onUpload} className='w-full sm:w-auto'>
-        <Upload className='size-4' />
-        Upload Document
-      </Button>
-    </section>
+    <PageHeader
+      title='My Documents'
+      description='Upload and manage documents required for your loan applications.'
+      action={
+        <Button
+          type='button'
+          onClick={onUpload}
+          className='h-10 w-full gap-2 sm:w-auto'
+        >
+          <Upload className='size-4' />
+          Upload Document
+        </Button>
+      }
+    />
   );
 }

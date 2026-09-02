@@ -15,9 +15,7 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-
 import { ActionButton } from '@/components/action-button';
-
 import { cn } from '@/lib/utils';
 
 interface CustomerMobileSidebarProps {
@@ -28,22 +26,22 @@ interface CustomerMobileSidebarProps {
 const navigation = [
   {
     title: 'Dashboard',
-    href: '/client',
+    href: '/clients/dashboard',
     icon: LayoutDashboard,
   },
   {
     title: 'My Applications',
-    href: '/client/applications',
+    href: '/clients/applications',
     icon: FileText,
   },
   {
     title: 'My Loans',
-    href: '/client/loans',
+    href: '/clients/myloans',
     icon: WalletCards,
   },
   {
     title: 'Documents',
-    href: '/client/documents',
+    href: '/clients/documents',
     icon: FileCheck2,
   },
 ];
@@ -51,12 +49,12 @@ const navigation = [
 const accountNavigation = [
   {
     title: 'Profile',
-    href: '/client/profile',
+    href: '/clients/profile',
     icon: User,
   },
   {
     title: 'Settings',
-    href: '/client/settings',
+    href: '/clients/settings',
     icon: Settings,
   },
 ];
@@ -68,7 +66,7 @@ export function CustomerMobileSidebar({
   const pathname = usePathname();
 
   const isActive = (href: string) => {
-    if (href === '/client') {
+    if (href === '/clients/dashboard') {
       return pathname === href;
     }
 
@@ -106,9 +104,17 @@ export function CustomerMobileSidebar({
         '
       >
         {/* Header */}
-        <div className='flex h-[68px] shrink-0 items-center justify-between px-5'>
+        <div
+          className='
+            flex h-[68px]
+            shrink-0
+            items-center
+            justify-between
+            px-5
+          '
+        >
           <Link
-            href='/client'
+            href='/clients/dashboard'
             onClick={onClose}
             className='flex items-center gap-3'
           >
@@ -148,7 +154,15 @@ export function CustomerMobileSidebar({
         <Separator />
 
         {/* Navigation */}
-        <div className='flex-1 overflow-y-auto px-3 py-5'>
+        <div
+          className='
+            flex-1
+            overflow-y-auto
+            px-3
+            py-5
+          '
+        >
+          {/* Overview */}
           <p
             className='
               mb-2
@@ -185,8 +199,16 @@ export function CustomerMobileSidebar({
                       transition-colors
                     `,
                     active ?
-                      'bg-primary text-primary-foreground shadow-sm'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                      `
+                        bg-primary
+                        text-primary-foreground
+                        shadow-sm
+                      `
+                    : `
+                        text-muted-foreground
+                        hover:bg-muted
+                        hover:text-foreground
+                      `,
                   )}
                 >
                   <Icon className='size-[17px] shrink-0' />
@@ -199,6 +221,7 @@ export function CustomerMobileSidebar({
 
           <Separator className='my-6' />
 
+          {/* Account */}
           <p
             className='
               mb-2
@@ -235,8 +258,16 @@ export function CustomerMobileSidebar({
                       transition-colors
                     `,
                     active ?
-                      'bg-primary text-primary-foreground shadow-sm'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                      `
+                        bg-primary
+                        text-primary-foreground
+                        shadow-sm
+                      `
+                    : `
+                        text-muted-foreground
+                        hover:bg-muted
+                        hover:text-foreground
+                      `,
                   )}
                 >
                   <Icon className='size-[17px] shrink-0' />
@@ -251,7 +282,7 @@ export function CustomerMobileSidebar({
         {/* Bottom */}
         <div className='border-t p-4'>
           <ActionButton
-            href='/client/applications/new'
+            href='/clients/applications/new'
             label='Apply for Loan'
             variant='primary'
             fullWidth

@@ -8,11 +8,7 @@ import type {
   LoanApplication,
 } from '../types/application';
 
-interface UseApplicationsProps {
-  applications: LoanApplication[];
-}
-
-export function useApplications({ applications }: UseApplicationsProps) {
+export function useApplications(applications: LoanApplication[]) {
   const [filters, setFilters] = useState<ApplicationFilters>({
     search: '',
     status: 'all',
@@ -35,17 +31,17 @@ export function useApplications({ applications }: UseApplicationsProps) {
     });
   }, [applications, filters]);
 
-  function setSearch(search: string) {
+  function setSearch(value: string) {
     setFilters((current) => ({
       ...current,
-      search,
+      search: value,
     }));
   }
 
-  function setStatus(status: 'all' | ApplicationStatus) {
+  function setStatus(value: 'all' | ApplicationStatus) {
     setFilters((current) => ({
       ...current,
-      status,
+      status: value,
     }));
   }
 
@@ -56,13 +52,9 @@ export function useApplications({ applications }: UseApplicationsProps) {
     });
   }
 
-  const hasFilters =
-    filters.search.trim().length > 0 || filters.status !== 'all';
-
   return {
     filters,
     filteredApplications,
-    hasFilters,
     setSearch,
     setStatus,
     clearFilters,

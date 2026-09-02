@@ -1,6 +1,7 @@
 'use client';
 
-import { ApplicationsFilters, ApplicationsTable } from '..';
+import { ApplicationsFilters } from './filters';
+import { ApplicationsTable } from './table';
 
 import { useApplications } from '../hook/use-applications';
 
@@ -13,10 +14,8 @@ interface ApplicationsContentProps {
 export function ApplicationsContent({
   applications,
 }: ApplicationsContentProps) {
-  const { filters, filteredApplications, hasFilters, setSearch, setStatus } =
-    useApplications({
-      applications,
-    });
+  const { filters, filteredApplications, setSearch, setStatus, clearFilters } =
+    useApplications(applications);
 
   return (
     <div className='space-y-4'>
@@ -24,12 +23,10 @@ export function ApplicationsContent({
         filters={filters}
         onSearchChange={setSearch}
         onStatusChange={setStatus}
+        onClear={clearFilters}
       />
 
-      <ApplicationsTable
-        applications={filteredApplications}
-        hasFilters={hasFilters}
-      />
+      <ApplicationsTable applications={filteredApplications} />
     </div>
   );
 }

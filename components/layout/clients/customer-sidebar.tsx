@@ -16,7 +16,6 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-
 import { cn } from '@/lib/utils';
 
 interface NavigationItem {
@@ -67,7 +66,7 @@ export function CustomerSidebar() {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
-    if (href === '/client') {
+    if (href === '/clients/dashboard') {
       return pathname === href;
     }
 
@@ -132,7 +131,7 @@ export function CustomerSidebar() {
     >
       {/* Logo */}
       <div className='flex h-[68px] shrink-0 items-center px-5'>
-        <Link href='/client' className='flex items-center gap-3'>
+        <Link href='/clients/dashboard' className='flex items-center gap-3'>
           <div
             className='
               flex size-9 shrink-0
@@ -156,7 +155,16 @@ export function CustomerSidebar() {
       <Separator />
 
       {/* Navigation */}
-      <div className='flex min-h-0 flex-1 flex-col overflow-y-auto px-3 py-5'>
+      <div
+        className='
+          flex min-h-0
+          flex-1
+          flex-col
+          overflow-y-auto
+          px-3
+          py-5
+        '
+      >
         {/* Overview */}
         <div>
           <p
@@ -208,13 +216,32 @@ export function CustomerSidebar() {
             <p className='text-sm font-semibold'>Need assistance?</p>
           </div>
 
-          <p className='mt-1.5 text-xs leading-5 text-muted-foreground'>
+          <p
+            className='
+              mt-1.5
+              text-xs
+              leading-5
+              text-muted-foreground
+            '
+          >
             Contact our support team for help.
           </p>
 
-          <Button variant='link' className='mt-1 h-auto px-0 text-xs'>
-            <Link href='/client/support'>Contact Support</Link>
-          </Button>
+          <Link
+            href='/clients/support'
+            className='
+              mt-2
+              inline-flex
+              h-auto
+              items-center
+              text-xs
+              font-medium
+              text-primary
+              hover:underline
+            '
+          >
+            Contact Support
+          </Link>
         </div>
 
         {/* Sign Out */}

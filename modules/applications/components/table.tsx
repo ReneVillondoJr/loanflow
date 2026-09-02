@@ -1,182 +1,98 @@
-import Link from 'next/link';
+'use client';
 
-import { ArrowRight, Calendar, FileText } from 'lucide-react';
+import { Eye } from 'lucide-react';
 
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 import { ApplicationStatusBadge } from './status-badge';
-import { ApplicationsEmptyState } from './empty-state';
 
 import type { LoanApplication } from '../types/application';
 
 interface ApplicationsTableProps {
   applications: LoanApplication[];
-  hasFilters?: boolean;
 }
 
-export function ApplicationsTable({
-  applications,
-  hasFilters = false,
-}: ApplicationsTableProps) {
+export function ApplicationsTable({ applications }: ApplicationsTableProps) {
   return (
-    <Card className='min-w-0'>
+    <Card>
       <CardHeader>
-        <div className='flex items-center justify-between gap-4'>
-          <div>
-            <CardTitle className='text-base'>Applications</CardTitle>
-
-            <p className='mt-1 text-sm text-muted-foreground'>
-              Select an application to view its details.
-            </p>
-          </div>
-
-          <span className='shrink-0 text-sm text-muted-foreground'>
-            {applications.length}{' '}
-            {applications.length === 1 ? 'result' : 'results'}
-          </span>
-        </div>
+        <CardTitle>Applications</CardTitle>
       </CardHeader>
 
       <CardContent className='p-0'>
         {applications.length === 0 ?
-          <ApplicationsEmptyState hasFilters={hasFilters} />
-        : <>
-            {/* Desktop Table */}
-            <div className='hidden overflow-x-auto md:block'>
-              <table className='w-full text-sm'>
-                <thead className='border-y bg-muted/30'>
-                  <tr>
-                    <th className='px-6 py-3 text-left text-xs font-medium text-muted-foreground'>
-                      Application
-                    </th>
+          <div className='mx-6 mb-6 flex min-h-32 items-center justify-center rounded-lg border border-dashed'>
+            <p className='text-sm text-muted-foreground'>
+              No applications found.
+            </p>
+          </div>
+        : <div className='overflow-x-auto'>
+            <Table className='min-w-[760px]'>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className='px-6'>Application</TableHead>
 
-                    <th className='px-6 py-3 text-left text-xs font-medium text-muted-foreground'>
-                      Loan Type
-                    </th>
+                  <TableHead>Loan Type</TableHead>
 
-                    <th className='px-6 py-3 text-right text-xs font-medium text-muted-foreground'>
-                      Amount
-                    </th>
+                  <TableHead>Amount</TableHead>
 
-                    <th className='px-6 py-3 text-left text-xs font-medium text-muted-foreground'>
-                      Status
-                    </th>
+                  <TableHead>Status</TableHead>
 
-                    <th className='px-6 py-3 text-left text-xs font-medium text-muted-foreground'>
-                      Submitted
-                    </th>
+                  <TableHead>Submitted</TableHead>
 
-                    <th className='w-[56px] px-4 py-3' />
-                  </tr>
-                </thead>
+                  <TableHead>Updated</TableHead>
 
-                <tbody className='divide-y'>
-                  {applications.map((application) => (
-                    <tr
-                      key={application.id}
-                      className='transition-colors hover:bg-muted/40'
-                    >
-                      <td className='px-6 py-4'>
-                        <Link
-                          href={`/clients/applications/${application.applicationNumber}`}
-                          className='font-medium hover:underline'
-                        >
-                          {application.applicationNumber}
-                        </Link>
-                      </td>
+                  <TableHead className='px-6 text-right'>Action</TableHead>
+                </TableRow>
+              </TableHeader>
 
-                      <td className='px-6 py-4 text-muted-foreground'>
-                        {application.loanType}
-                      </td>
-
-                      <td className='px-6 py-4 text-right font-medium'>
-                        {application.amount}
-                      </td>
-
-                      <td className='px-6 py-4'>
-                        <ApplicationStatusBadge status={application.status} />
-                      </td>
-
-                      <td className='px-6 py-4 text-muted-foreground'>
-                        {application.submittedAt}
-                      </td>
-
-                      <td className='px-4 py-4'>
-                        <Link
-                          href={`/clients/applications/${application.applicationNumber}`}
-                          aria-label={`View ${application.applicationNumber}`}
-                          className='
-                            inline-flex
-                            size-8
-                            items-center
-                            justify-center
-                            rounded-md
-                            text-muted-foreground
-                            transition-colors
-                            hover:bg-muted
-                            hover:text-foreground
-                          '
-                        >
-                          <ArrowRight className='size-4' />
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Mobile Cards */}
-            <div className='divide-y md:hidden'>
-              {applications.map((application) => (
-                <Link
-                  key={application.id}
-                  href={`/clients/applications/${application.applicationNumber}`}
-                  className='
-                    block
-                    px-4
-                    py-4
-                    transition-colors
-                    hover:bg-muted/40
-                  '
-                >
-                  <div className='flex items-start justify-between gap-3'>
-                    <div className='min-w-0'>
-                      <div className='flex items-center gap-2'>
-                        <FileText className='size-4 shrink-0 text-muted-foreground' />
-
-                        <p className='truncate text-sm font-medium'>
-                          {application.applicationNumber}
-                        </p>
+              <TableBody>
+                {applications.map((application) => (
+                  <TableRow key={application.id}>
+                    <TableCell className='px-6'>
+                      <div className='font-medium'>
+                        {application.applicationNumber}
                       </div>
+                    </TableCell>
 
-                      <p className='mt-1 text-sm text-muted-foreground'>
-                        {application.loanType}
-                      </p>
-                    </div>
+                    <TableCell>{application.loanType}</TableCell>
 
-                    <ArrowRight className='size-4 shrink-0 text-muted-foreground' />
-                  </div>
+                    <TableCell className='font-medium'>
+                      {application.amount}
+                    </TableCell>
 
-                  <div className='mt-4 flex flex-wrap items-center justify-between gap-3'>
-                    <div>
-                      <p className='text-sm font-semibold'>
-                        {application.amount}
-                      </p>
+                    <TableCell>
+                      <ApplicationStatusBadge status={application.status} />
+                    </TableCell>
 
-                      <div className='mt-1 flex items-center gap-1.5 text-xs text-muted-foreground'>
-                        <Calendar className='size-3.5' />
+                    <TableCell className='text-muted-foreground'>
+                      {application.submittedAt}
+                    </TableCell>
 
-                        {application.submittedAt}
-                      </div>
-                    </div>
+                    <TableCell className='text-muted-foreground'>
+                      {application.updatedAt}
+                    </TableCell>
 
-                    <ApplicationStatusBadge status={application.status} />
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </>
+                    <TableCell className='px-6 text-right'>
+                      <Button type='button' variant='ghost' size='sm'>
+                        <Eye className='size-4' />
+                        View
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         }
       </CardContent>
     </Card>
