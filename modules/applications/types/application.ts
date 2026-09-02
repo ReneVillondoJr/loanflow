@@ -1,32 +1,30 @@
-export type ApplicationFormData = {
-  loanProductId: string;
+export type ApplicationStatus =
+  | 'Draft'
+  | 'Submitted'
+  | 'Under Review'
+  | 'Pending Documents'
+  | 'Approved'
+  | 'Rejected'
+  | 'Cancelled';
 
-  requestedAmount: number;
-  termMonths: number;
-  purpose: string;
+export interface LoanApplication {
+  id: string;
+  applicationNumber: string;
+  loanType: string;
+  amount: string;
+  status: ApplicationStatus;
+  submittedAt: string;
+  updatedAt: string;
+}
 
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  dateOfBirth: string;
-  civilStatus: string;
-  nationality: string;
+export interface ApplicationSummary {
+  total: number;
+  pending: number;
+  approved: number;
+  rejected: number;
+}
 
-  phone: string;
-  alternatePhone: string;
-
-  address: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  country: string;
-
-  employmentStatus: string;
-  employerName: string;
-  jobTitle: string;
-  employmentYears: number;
-  monthlyIncome: number;
-
-  monthlyExpenses: number;
-  existingDebt: number;
-};
+export interface ApplicationFilters {
+  search: string;
+  status: 'all' | ApplicationStatus;
+}
