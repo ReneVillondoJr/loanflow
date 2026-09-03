@@ -1,7 +1,7 @@
 import { LoanCard } from './laon-cards';
 import { LoanEmptyState } from './empty-state';
 
-import type { Loan } from '@/modules/client-loans/types/loans';
+import type { Loan } from '@/modules/client/client-loans/types/loans';
 
 interface LoansListProps {
   loans: Loan[];

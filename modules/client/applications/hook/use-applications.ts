@@ -2,6 +2,9 @@
 
 import { useMemo, useState } from 'react';
 
+import { initialFormData } from '../data/applications';
+import type { ApplicationFormData } from '../types/application';
+
 import type {
   ApplicationFilters,
   ApplicationStatus,
@@ -58,5 +61,59 @@ export function useApplications(applications: LoanApplication[]) {
     setSearch,
     setStatus,
     clearFilters,
+  };
+}
+
+export function useApplicationForm() {
+  const [formData, setFormData] =
+    useState<ApplicationFormData>(initialFormData);
+
+  const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  function updateField<K extends keyof ApplicationFormData>(
+    field: K,
+    value: ApplicationFormData[K],
+  ) {
+    setFormData((current) => ({
+      ...current,
+      [field]: value,
+    }));
+  }
+
+  function nextStep() {
+    setStep((current) => Math.min(current + 1, 3));
+  }
+
+  function previousStep() {
+    setStep((current) => Math.max(current - 1, 1));
+  }
+
+  function goToStep(value: number) {
+    setStep(Math.min(Math.max(value, 1), 3));
+  }
+
+  async function submitApplication(onSuccess?: () => void) {
+    setIsSubmitting(true);
+
+    try {
+      // Replace this with your API/server action later.
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
+      onSuccess?.();
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  return {
+    formData,
+    step,
+    isSubmitting,
+    updateField,
+    nextStep,
+    previousStep,
+    goToStep,
+    submitApplication,
   };
 }

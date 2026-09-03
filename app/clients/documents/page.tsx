@@ -1,4 +1,4 @@
-import DocumentsModule from '@/modules/documents';
+import DocumentsModule from '@/modules/client/documents';
 
 export default function ClientDocumentsPage() {
   return <DocumentsModule />;
