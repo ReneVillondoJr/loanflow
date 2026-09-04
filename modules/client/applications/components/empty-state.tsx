@@ -10,7 +10,7 @@ export function ApplicationsEmptyState({
   hasFilters = false,
 }: ApplicationsEmptyStateProps) {
   return (
-    <div className='flex min-h-[360px] flex-col items-center justify-center px-6 text-center'>
+    <div className='flex min-h-90 flex-col items-center justify-center px-6 text-center'>
       <div className='flex size-12 items-center justify-center rounded-full bg-muted'>
         <FileText className='size-6 text-muted-foreground' />
       </div>

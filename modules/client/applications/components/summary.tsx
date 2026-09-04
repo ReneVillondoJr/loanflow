@@ -39,7 +39,7 @@ export function ApplicationsSummary({ summary }: ApplicationsSummaryProps) {
 
         return (
           <Card key={item.label}>
-            <CardContent className='flex items-center justify-between p-6'>
+            <CardContent className='flex items-center justify-between p-5'>
               <div>
                 <p className='text-sm text-muted-foreground'>{item.label}</p>
 

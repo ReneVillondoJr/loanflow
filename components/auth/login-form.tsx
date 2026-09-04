@@ -3,6 +3,7 @@
 import { FormEvent, useState } from 'react';
 
 import Link from 'next/link';
+
 import { useRouter } from 'next/navigation';
 
 import { signIn } from 'next-auth/react';
@@ -10,7 +11,9 @@ import { signIn } from 'next-auth/react';
 import { Eye, EyeOff, Loader2, LockKeyhole, Mail } from 'lucide-react';
 
 import { Alert, AlertDescription } from '@/components/ui/alert';
+
 import { Button } from '@/components/ui/button';
+
 import {
   Card,
   CardContent,
@@ -18,7 +21,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+
 import { Input } from '@/components/ui/input';
+
 import { Label } from '@/components/ui/label';
 
 export function LoginForm() {
@@ -39,7 +44,7 @@ export function LoginForm() {
 
     try {
       const result = await signIn('credentials', {
-        email,
+        email: email.trim(),
         password,
         redirect: false,
       });
@@ -49,9 +54,24 @@ export function LoginForm() {
         return;
       }
 
-      router.push('/dashboard');
+      /*
+       * Do NOT redirect directly to /dashboard.
+       *
+       * The root page (app/page.tsx) checks the
+       * authenticated user's role and redirects:
+       *
+       * SUPER_ADMIN  -> /admin/dashboard
+       * ADMIN        -> /admin/dashboard
+       * LOAN_OFFICER -> /admin/dashboard
+       * UNDERWRITER  -> /admin/dashboard
+       * CUSTOMER      -> /clients/dashboard
+       */
+
+      router.replace('/');
       router.refresh();
-    } catch {
+    } catch (error) {
+      console.error('Login error:', error);
+
       setError('Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
@@ -74,12 +94,14 @@ export function LoginForm() {
 
       <CardContent>
         <form onSubmit={handleSubmit} className='space-y-5'>
+          {/* Error */}
           {error && (
             <Alert variant='destructive'>
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
 
+          {/* Email */}
           <div className='space-y-2'>
             <Label htmlFor='email'>Email address</Label>
 
@@ -101,6 +123,7 @@ export function LoginForm() {
             </div>
           </div>
 
+          {/* Password */}
           <div className='space-y-2'>
             <div className='flex items-center justify-between'>
               <Label htmlFor='password'>Password</Label>
@@ -143,6 +166,7 @@ export function LoginForm() {
             </div>
           </div>
 
+          {/* Submit */}
           <Button type='submit' className='w-full' disabled={isLoading}>
             {isLoading ?
               <>
@@ -152,6 +176,7 @@ export function LoginForm() {
             : 'Sign in'}
           </Button>
 
+          {/* Register */}
           <div className='text-center text-sm text-muted-foreground'>
             Don&apos;t have an account?{' '}
             <Link

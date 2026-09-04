@@ -63,7 +63,7 @@ export function ApplicationsFilters({
           onStatusChange(value as 'all' | ApplicationStatus);
         }}
       >
-        <SelectTrigger className='w-full sm:w-[200px]'>
+        <SelectTrigger className='w-full sm:w-50'>
           <SelectValue placeholder='Filter status' />
         </SelectTrigger>
 

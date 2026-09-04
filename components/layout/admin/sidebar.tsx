@@ -15,6 +15,7 @@ import {
   Users,
 } from 'lucide-react';
 
+import { LogoutButton } from '@/components/logout-button';
 import { cn } from '@/lib/utils';
 
 const navigation = [
@@ -69,8 +70,9 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className='fixed inset-y-0 left-0 hidden w-64 border-r bg-background lg:block'>
-      <div className='flex h-16 items-center border-b px-6'>
+    <aside className='fixed inset-y-0 left-0 hidden w-64 border-r bg-background lg:flex lg:flex-col'>
+      {/* Logo */}
+      <div className='flex h-16 shrink-0 items-center border-b px-6'>
         <Link href='/admin' className='flex items-center gap-3 font-semibold'>
           <div className='flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground'>
             L
@@ -80,7 +82,8 @@ export function AdminSidebar() {
         </Link>
       </div>
 
-      <nav className='space-y-1 p-3'>
+      {/* Navigation */}
+      <nav className='flex-1 space-y-1 overflow-y-auto p-3'>
         {navigation.map((item) => {
           const Icon = item.icon;
 
@@ -102,11 +105,16 @@ export function AdminSidebar() {
             >
               <Icon className='size-4' />
 
-              {item.title}
+              <span>{item.title}</span>
             </Link>
           );
         })}
       </nav>
+
+      {/* Sign Out */}
+      <div className='shrink-0 border-t p-4'>
+        <LogoutButton />
+      </div>
     </aside>
   );
 }

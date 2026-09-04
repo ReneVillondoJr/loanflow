@@ -36,7 +36,7 @@ export function ApplicationsTable({ applications }: ApplicationsTableProps) {
             </p>
           </div>
         : <div className='overflow-x-auto'>
-            <Table className='min-w-[760px]'>
+            <Table className='min-w-190'>
               <TableHeader>
                 <TableRow>
                   <TableHead className='px-6'>Application</TableHead>

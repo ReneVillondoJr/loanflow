@@ -1,11 +1,25 @@
-import type { ReactNode } from 'react';
+import { redirect } from 'next/navigation';
 
-import { CustomerLayout } from '@/components/layout/clients/customer-layout';
+import { auth } from '@/auth';
 
-interface ClientsLayoutProps {
-  children: ReactNode;
-}
+export default async function HomePage() {
+  const session = await auth();
 
-export default function ClientsLayout({ children }: ClientsLayoutProps) {
-  return <CustomerLayout>{children}</CustomerLayout>;
+  if (!session?.user) {
+    redirect('/auth/login');
+  }
+
+  switch (session.user.role) {
+    case 'SUPER_ADMIN':
+    case 'ADMIN':
+    case 'LOAN_OFFICER':
+    case 'UNDERWRITER':
+      redirect('/admin/dashboard');
+
+    case 'CUSTOMER':
+      redirect('/clients/dashboard');
+
+    default:
+      redirect('/auth/login');
+  }
 }
