@@ -1,42 +1,40 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 
-import { CustomerHeader } from './customer-header';
-import { CustomerMobileSidebar } from './customer-mobile-sidebar';
-import { CustomerSidebar } from './customer-sidebar';
+import { CustomerHeader } from '@/components/layout/clients/customer-header';
+import { CustomerSidebar } from '@/components/layout/clients/customer-sidebar';
 
-interface CustomerLayoutProps {
-  children: React.ReactNode;
+interface CustomerUser {
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
 }
 
-export function CustomerLayout({ children }: CustomerLayoutProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+interface CustomerLayoutProps {
+  children: ReactNode;
+  user: CustomerUser;
+}
+
+export function CustomerLayout({ children, user }: CustomerLayoutProps) {
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   return (
-    <div className='min-h-screen bg-muted/30'>
-      <div className='flex min-h-screen'>
-        {/* Desktop Sidebar */}
-        <CustomerSidebar />
+    <div className='min-h-screen bg-background'>
+      <CustomerSidebar
+        open={mobileSidebarOpen}
+        onOpenChange={setMobileSidebarOpen}
+      />
 
-        {/* Mobile Sidebar */}
-        <CustomerMobileSidebar
-          open={mobileMenuOpen}
-          onClose={() => setMobileMenuOpen(false)}
+      <div className='lg:pl-64'>
+        <CustomerHeader
+          user={user}
+          onMenuClick={() => setMobileSidebarOpen(true)}
         />
 
-        {/* Main Content Area */}
-        <div className='flex min-w-0 flex-1 flex-col'>
-          {/* Header */}
-          <CustomerHeader onMenuClick={() => setMobileMenuOpen(true)} />
-
-          {/* Content */}
-          <main className='flex-1'>
-            <div className='mx-auto w-full max-w-[1400px] px-4 py-6 sm:px-6 lg:px-8'>
-              {children}
-            </div>
-          </main>
-        </div>
+        <main className='min-h-[calc(100vh-4rem)] p-4 md:p-6 lg:p-8'>
+          {children}
+        </main>
       </div>
     </div>
   );
