@@ -1,15 +1,9 @@
 'use client';
 
-import { Card, CardContent } from '@/components/ui/card';
-
 import { LoanProductsFilters } from './components/filters';
-
 import { LoanProductsHeader } from './components/header';
-
 import { LoanProductsStats } from './components/stats';
-
 import { LoanProductsTable } from './components/table';
-
 import { useLoanProducts } from './hooks/use-loan-product';
 
 export default function LoanProducts() {
@@ -17,12 +11,10 @@ export default function LoanProducts() {
     filteredProducts,
     filters,
     stats,
-
     updateSearch,
     updateCategory,
     updateStatus,
     resetFilters,
-
     updateProduct,
     toggleStatus,
     deleteProduct,
@@ -34,17 +26,13 @@ export default function LoanProducts() {
 
       <LoanProductsStats stats={stats} />
 
-      <Card>
-        <CardContent className='p-5'>
-          <LoanProductsFilters
-            filters={filters}
-            onSearchChange={updateSearch}
-            onCategoryChange={updateCategory}
-            onStatusChange={updateStatus}
-            onReset={resetFilters}
-          />
-        </CardContent>
-      </Card>
+      <LoanProductsFilters
+        filters={filters}
+        onSearchChange={updateSearch}
+        onCategoryChange={updateCategory}
+        onStatusChange={updateStatus}
+        onReset={resetFilters}
+      />
 
       <LoanProductsTable
         products={filteredProducts}
