@@ -35,3 +35,35 @@ export interface CustomerFilterState {
 
   status: string;
 }
+
+export interface AddCustomerFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  dateOfBirth: string;
+  address: string;
+  city: string;
+  province: string;
+  postalCode: string;
+  employmentStatus: string;
+  employer: string;
+  monthlyIncome: string;
+  notes: string;
+}
+
+export interface AddCustomerFormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  dateOfBirth?: string;
+  address?: string;
+  city?: string;
+  province?: string;
+  postalCode?: string;
+  employmentStatus?: string;
+  employer?: string;
+  monthlyIncome?: string;
+  notes?: string;
+}

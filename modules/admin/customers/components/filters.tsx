@@ -25,7 +25,7 @@ export function CustomerFilters({
   onStatusChange,
 }: CustomerFiltersProps) {
   return (
-    <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
+    <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
       {/* Search */}
       <div className='relative w-full sm:max-w-sm'>
         <Search className='absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground' />
@@ -35,16 +35,20 @@ export function CustomerFilters({
           value={search}
           onChange={(event) => onSearchChange(event.target.value)}
           placeholder='Search customers...'
-          className='pl-9'
+          className='h-10 pl-9'
         />
       </div>
 
-      {/* Status Filter */}
+      {/* Status */}
       <Select
         value={status}
-        onValueChange={(value) => onStatusChange(value ?? 'ALL')}
+        onValueChange={(value) => {
+          if (value !== null) {
+            onStatusChange(value);
+          }
+        }}
       >
-        <SelectTrigger className='w-full sm:w-45'>
+        <SelectTrigger className='h-10 w-full sm:w-45'>
           <SelectValue placeholder='Filter status' />
         </SelectTrigger>
 

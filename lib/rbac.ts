@@ -1,14 +1,23 @@
 import { NextResponse } from 'next/server';
+
 import { auth } from '@/auth';
-import type { UserRole } from '@/generated/prisma';
+
+import type { UserRole } from '@/generated/prisma/client';
 import type { Session } from 'next-auth';
 
 type AuthResult =
-  | { session: Session; error: null }
-  | { session: null; error: NextResponse };
+  | {
+      session: Session;
+      error: null;
+    }
+  | {
+      session: null;
+      error: NextResponse;
+    };
 
 /**
- * Ensures a request is authenticated. Use inside Route Handlers.
+ * Ensures a request is authenticated.
+ * Use inside Route Handlers.
  */
 export async function requireAuth(): Promise<AuthResult> {
   const session = await auth();
@@ -20,17 +29,24 @@ export async function requireAuth(): Promise<AuthResult> {
     };
   }
 
-  return { session, error: null };
+  return {
+    session,
+    error: null,
+  };
 }
 
 /**
- * Ensures a request is authenticated AND the user's role is in the allow list.
+ * Ensures a request is authenticated AND
+ * the user's role is in the allow list.
  */
 export async function requireRole(
   allowedRoles: UserRole[],
 ): Promise<AuthResult> {
   const result = await requireAuth();
-  if (result.error) return result;
+
+  if (result.error) {
+    return result;
+  }
 
   if (!allowedRoles.includes(result.session.user.role)) {
     return {
@@ -42,7 +58,9 @@ export async function requireRole(
   return result;
 }
 
-// Higher number = more privileged. Useful for "at least this role" checks.
+/**
+ * Higher number = more privileged.
+ */
 export const ROLE_HIERARCHY: Record<UserRole, number> = {
   CUSTOMER: 0,
   LOAN_OFFICER: 1,
@@ -51,6 +69,10 @@ export const ROLE_HIERARCHY: Record<UserRole, number> = {
   SUPER_ADMIN: 4,
 };
 
+/**
+ * Checks whether a user has at least
+ * the required role level.
+ */
 export function hasMinimumRole(
   userRole: UserRole,
   minimumRole: UserRole,
@@ -58,6 +80,9 @@ export function hasMinimumRole(
   return ROLE_HIERARCHY[userRole] >= ROLE_HIERARCHY[minimumRole];
 }
 
+/**
+ * All staff roles.
+ */
 export const STAFF_ROLES: UserRole[] = [
   'LOAN_OFFICER',
   'UNDERWRITER',

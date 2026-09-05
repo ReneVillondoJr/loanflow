@@ -5,13 +5,18 @@ import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
 import type { QuickActionsProps } from '../types/dashboard';
 
 export function QuickActions({ actions }: QuickActionsProps) {
   const router = useRouter();
+
+  const handleAction = (href?: string) => {
+    if (!href) return;
+
+    router.push(href);
+  };
 
   return (
     <Card>
@@ -33,11 +38,7 @@ export function QuickActions({ actions }: QuickActionsProps) {
               type='button'
               variant='outline'
               className='h-auto w-full justify-start gap-3 p-3 text-left'
-              onClick={() => {
-                if (action.href) {
-                  router.push(action.href);
-                }
-              }}
+              onClick={() => handleAction(action.href)}
             >
               <div className='flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted'>
                 <Icon className='size-4 text-muted-foreground' />
