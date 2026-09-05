@@ -150,7 +150,7 @@ export function LoanCard({ loan }: LoanCardProps) {
             </div>
 
             <Link
-              href={`/clients/loans/${loan.id}`}
+              href={`/clients/myloans/${loan.id}`}
               className='inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border bg-background px-4 text-sm font-medium transition-colors hover:bg-muted'
             >
               View Details
