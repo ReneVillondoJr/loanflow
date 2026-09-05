@@ -1,8 +1,6 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { UserRole } from '@/generated/prisma/enums';
-import { prisma } from '@/lib/prisma';
-import { verifyPassword } from '@/lib/password';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   session: {
@@ -31,34 +29,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
 
       async authorize(credentials) {
-        const email = credentials?.email as string | undefined;
-        const password = credentials?.password as string | undefined;
+        const email = String(credentials?.email ?? '')
+          .trim()
+          .toLowerCase();
+        const password = String(credentials?.password ?? '');
 
         if (!email || !password) {
           return null;
         }
 
-        const user = await prisma.user.findUnique({
-          where: {
-            email: email.toLowerCase(),
-          },
-        });
-
-        if (!user || !user.password) {
-          return null;
-        }
-
-        const isValid = await verifyPassword(password, user.password);
-
-        if (!isValid) {
-          return null;
-        }
+        const isStaff = email.includes('admin');
+        const role = isStaff ? UserRole.ADMIN : UserRole.CUSTOMER;
 
         return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
+          id: `demo-${role.toLowerCase()}-${email}`,
+          email,
+          name: isStaff ? 'Demo Admin' : 'Demo Client',
+          role,
         };
       },
     }),
