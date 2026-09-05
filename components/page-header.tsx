@@ -26,11 +26,10 @@ export function PageHeader({
         className,
       )}
     >
-      {/* Header content */}
       <div className='min-w-0'>
-        <div className='flex items-center gap-3'>
+        <div className='flex items-start gap-3'>
           {icon && (
-            <div className='flex size-10 shrink-0 items-center justify-center rounded-md bg-muted'>
+            <div className='flex size-10 shrink-0 items-center justify-center rounded-lg border bg-primary/10'>
               {icon}
             </div>
           )}
@@ -51,7 +50,6 @@ export function PageHeader({
         </div>
       </div>
 
-      {/* Optional action */}
       {action && <div className='shrink-0'>{action}</div>}
     </section>
   );
