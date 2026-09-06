@@ -1,17 +1,11 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-
 import Link from 'next/link';
-
 import { useRouter } from 'next/navigation';
-
 import { signIn } from 'next-auth/react';
-
 import { Eye, EyeOff, Loader2, LockKeyhole, Mail } from 'lucide-react';
-
 import { Alert, AlertDescription } from '@/components/ui/alert';
-
 import { Button } from '@/components/ui/button';
 
 import {
