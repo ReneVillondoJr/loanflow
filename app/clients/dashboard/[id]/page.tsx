@@ -1,35 +1,21 @@
-import { redirect } from 'next/navigation';
-
-import { auth } from '@/auth';
-import { prisma } from '@/lib/prisma';
+import { cookies } from 'next/headers';
 
 export default async function ClientPage() {
-  const session = await auth();
-
-  if (!session?.user?.id) {
-    redirect('/auth/login');
-  }
-
-  const user = await prisma.user.findUnique({
-    where: {
-      id: session.user.id,
-    },
-    include: {
-      customer: true,
-    },
-  });
-
-  if (!user) {
-    redirect('/auth/login');
-  }
+  const cookieStore = await cookies();
+  const name = decodeURIComponent(
+    cookieStore.get('loanflow-name')?.value ?? 'Demo Client',
+  );
+  const email = decodeURIComponent(
+    cookieStore.get('loanflow-email')?.value ?? '',
+  );
 
   return (
     <div>
-      <h1>Welcome, {user.name}</h1>
+      <h1>Welcome, {name}</h1>
 
-      <p>Email: {user.email}</p>
+      <p>Email: {email}</p>
 
-      <p>Customer ID: {user.customer?.id}</p>
+      <p>Customer portal demo</p>
     </div>
   );
 }

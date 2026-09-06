@@ -2,7 +2,6 @@
 
 import { useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -27,7 +26,7 @@ export default function RegisterPage() {
     setError(null);
     setLoading(true);
 
-    const res = await fetch('/api/register', {
+    const res = await fetch('/api/admin/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),
@@ -44,21 +43,11 @@ export default function RegisterPage() {
       return;
     }
 
-    // Auto sign in after successful registration.
-    const result = await signIn('credentials', {
-      email: form.email,
-      password: form.password,
-      redirect: false,
-    });
-
+    document.cookie = 'loanflow-role=CUSTOMER; path=/; max-age=28800';
+    document.cookie = `loanflow-email=${encodeURIComponent(form.email.trim().toLowerCase())}; path=/; max-age=28800`;
+    document.cookie = `loanflow-name=${encodeURIComponent(`${form.firstName} ${form.lastName}`)}; path=/; max-age=28800`;
     setLoading(false);
-
-    if (result?.error) {
-      router.push('/login');
-      return;
-    }
-
-    router.push('/dashboard');
+    router.push('/clients/dashboard');
   }
 
   return (

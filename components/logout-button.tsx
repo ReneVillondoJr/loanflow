@@ -1,15 +1,15 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
 import { LogOut } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 
 export function LogoutButton() {
   const handleLogout = async () => {
-    await signOut({
-      callbackUrl: '/auth/login',
-    });
+    document.cookie = 'loanflow-role=; path=/; max-age=0';
+    document.cookie = 'loanflow-email=; path=/; max-age=0';
+    document.cookie = 'loanflow-name=; path=/; max-age=0';
+    window.location.href = '/auth/login';
   };
 
   return (

@@ -13,8 +13,6 @@ import {
   X,
 } from 'lucide-react';
 
-import { signOut } from 'next-auth/react';
-
 import { cn } from '@/lib/utils';
 
 import { Button } from '@/components/ui/button';
@@ -62,10 +60,11 @@ export function CustomerSidebar({
     onOpenChange?.(false);
   };
 
-  const handleLogout = async () => {
-    await signOut({
-      callbackUrl: '/auth/login',
-    });
+  const handleLogout = () => {
+    document.cookie = 'loanflow-role=; path=/; max-age=0';
+    document.cookie = 'loanflow-email=; path=/; max-age=0';
+    document.cookie = 'loanflow-name=; path=/; max-age=0';
+    window.location.href = '/auth/login';
   };
 
   return (
