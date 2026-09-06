@@ -3,6 +3,8 @@ import Credentials from 'next-auth/providers/credentials';
 import { UserRole } from '@/generated/prisma/enums';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  trustHost: true,
+
   session: {
     strategy: 'jwt',
     maxAge: 60 * 60 * 8, // 8 hours
