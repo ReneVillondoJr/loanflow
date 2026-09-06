@@ -1,7 +1,5 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
-
 import { Bell, ChevronDown, Menu, Plus, User } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -155,10 +153,11 @@ export function CustomerHeader({ onMenuClick, user }: CustomerHeaderProps) {
 
             <DropdownMenuItem
               className='cursor-pointer text-destructive focus:text-destructive'
-              onClick={async () => {
-                await signOut({
-                  callbackUrl: '/auth/login',
-                });
+              onClick={() => {
+                document.cookie = 'loanflow-role=; path=/; max-age=0';
+                document.cookie = 'loanflow-email=; path=/; max-age=0';
+                document.cookie = 'loanflow-name=; path=/; max-age=0';
+                window.location.href = '/auth/login';
               }}
             >
               Sign out

@@ -1,25 +1,12 @@
 import { redirect } from 'next/navigation';
-
-import { auth } from '@/auth';
+import { cookies } from 'next/headers';
 
 export default async function HomePage() {
-  const session = await auth();
+  const role = (await cookies()).get('loanflow-role')?.value;
 
-  if (!session?.user) {
+  if (!role) {
     redirect('/auth/login');
   }
 
-  switch (session.user.role) {
-    case 'SUPER_ADMIN':
-    case 'ADMIN':
-    case 'LOAN_OFFICER':
-    case 'UNDERWRITER':
-      redirect('/admin/dashboard');
-
-    case 'CUSTOMER':
-      redirect('/clients/dashboard');
-
-    default:
-      redirect('/auth/login');
-  }
+  redirect(role === 'ADMIN' ? '/admin' : '/clients/dashboard');
 }

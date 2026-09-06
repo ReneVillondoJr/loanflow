@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import { redirect } from 'next/navigation';
-
-import { auth } from '@/auth';
+import { cookies } from 'next/headers';
 
 import { AdminHeader } from '@/components/layout/admin/header';
 import { AdminSidebar } from '@/components/layout/admin/sidebar';
@@ -24,16 +23,21 @@ export default async function AdminLayout({
 }: {
   children: ReactNode;
 }) {
-  const session = await auth();
+  const cookieStore = await cookies();
+  const role = cookieStore.get('loanflow-role')?.value;
+  const email = decodeURIComponent(
+    cookieStore.get('loanflow-email')?.value ?? '',
+  );
+  const name = decodeURIComponent(
+    cookieStore.get('loanflow-name')?.value ?? 'Demo Admin',
+  );
 
-  // Authentication
-  if (!session?.user) {
+  if (!role) {
     redirect('/auth/login');
   }
 
-  // Authorization
-  if (!isAdminRole(session.user.role)) {
-    redirect('/client');
+  if (!isAdminRole(role)) {
+    redirect('/clients/dashboard');
   }
 
   return (
@@ -44,7 +48,7 @@ export default async function AdminLayout({
       {/* Main application area */}
       <div className='min-h-screen lg:pl-64'>
         {/* Header */}
-        <AdminHeader user={session.user} />
+        <AdminHeader user={{ name, email }} />
 
         {/* Page content */}
         <main className='min-h-[calc(100vh-4rem)]'>

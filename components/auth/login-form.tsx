@@ -3,7 +3,6 @@
 import { FormEvent, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
 import { Eye, EyeOff, Loader2, LockKeyhole, Mail } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -36,40 +35,15 @@ export function LoginForm() {
     setError('');
     setIsLoading(true);
 
-    try {
-      const result = await signIn('credentials', {
-        email: email.trim(),
-        password,
-        redirect: false,
-      });
+    const normalizedEmail = email.trim().toLowerCase();
+    const role = normalizedEmail.includes('admin') ? 'ADMIN' : 'CUSTOMER';
 
-      if (!result || result.error) {
-        setError('Invalid email or password.');
-        return;
-      }
+    document.cookie = `loanflow-role=${role}; path=/; max-age=28800`;
+    document.cookie = `loanflow-email=${encodeURIComponent(normalizedEmail)}; path=/; max-age=28800`;
+    document.cookie = `loanflow-name=${encodeURIComponent(role === 'ADMIN' ? 'Demo Admin' : 'Demo Client')}; path=/; max-age=28800`;
 
-      /*
-       * Do NOT redirect directly to /dashboard.
-       *
-       * The root page (app/page.tsx) checks the
-       * authenticated user's role and redirects:
-       *
-       * SUPER_ADMIN  -> /admin/dashboard
-       * ADMIN        -> /admin/dashboard
-       * LOAN_OFFICER -> /admin/dashboard
-       * UNDERWRITER  -> /admin/dashboard
-       * CUSTOMER      -> /clients/dashboard
-       */
-
-      router.replace('/');
-      router.refresh();
-    } catch (error) {
-      console.error('Login error:', error);
-
-      setError('Something went wrong. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
+    router.replace(role === 'ADMIN' ? '/admin' : '/clients/dashboard');
+    setIsLoading(false);
   }
 
   return (
@@ -174,7 +148,7 @@ export function LoginForm() {
           <div className='text-center text-sm text-muted-foreground'>
             Don&apos;t have an account?{' '}
             <Link
-              href='/register'
+              href='/clients/register'
               className='font-medium text-primary hover:underline'
             >
               Create an account

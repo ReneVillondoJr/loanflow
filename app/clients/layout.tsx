@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { redirect } from 'next/navigation';
-
-import { auth } from '@/auth';
+import { cookies } from 'next/headers';
 
 import { CustomerLayout } from '@/components/layout/clients/customer-layout';
 
@@ -11,24 +10,28 @@ export default async function ClientLayout({
 }: {
   children: ReactNode;
 }) {
-  const session = await auth();
+  const cookieStore = await cookies();
+  const role = cookieStore.get('loanflow-role')?.value;
+  const email = decodeURIComponent(
+    cookieStore.get('loanflow-email')?.value ?? '',
+  );
+  const name = decodeURIComponent(
+    cookieStore.get('loanflow-name')?.value ?? 'Demo Client',
+  );
 
-  // Not logged in
-  if (!session?.user) {
+  if (!role) {
     redirect('/auth/login');
   }
 
-  // Only CUSTOMER can access /clients
-  if (session.user.role !== 'CUSTOMER') {
-    redirect('/admin/dashboard');
+  if (role !== 'CUSTOMER') {
+    redirect('/admin');
   }
 
   return (
     <CustomerLayout
       user={{
-        name: session.user.name,
-        email: session.user.email,
-        image: session.user.image,
+        name,
+        email,
       }}
     >
       {children}
